@@ -1,0 +1,284 @@
+definitions:
+  github_com_ch3nnn_webstack-go_api_v1.CategoryCreateReq:
+    properties:
+      icon:
+        description: 图标
+        type: string
+      level:
+        description: 分类等级 1 一级分类  2 二级分类
+        type: integer
+      name:
+        description: 菜单名称
+        type: string
+      parent_id:
+        description: 分类父ID
+        type: integer
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryCreateResp:
+    properties:
+      created_at:
+        description: 创建时间
+        type: string
+      icon:
+        description: 图标
+        type: string
+      id:
+        type: integer
+      is_used:
+        description: 是否启用 1:是 0:否
+        type: boolean
+      level:
+        description: 分类等级
+        type: integer
+      parent_id:
+        type: integer
+      sort:
+        description: 排序
+        type: integer
+      title:
+        description: 名称
+        type: string
+      updated_at:
+        description: 更新时间
+        type: string
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteReq:
+    properties:
+      id:
+        description: ID
+        type: integer
+    required:
+    - id
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteResp:
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryDetailReq:
+    properties:
+      id:
+        description: ID
+        type: integer
+    required:
+    - id
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryDetailResp:
+    properties:
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: 主键ID
+        type: integer
+      name:
+        description: 分类名称
+        type: string
+      pid:
+        description: 父类ID
+        type: integer
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryList:
+    properties:
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: ID
+        type: integer
+      is_used:
+        description: 是否启用 1=启用 -1=禁用
+        type: boolean
+      level:
+        description: 分类等级 1 一级分类  2 二级分类
+        type: integer
+      link:
+        description: 链接地址
+        type: string
+      name:
+        description: 菜单名称
+        type: string
+      pid:
+        description: 父类ID
+        type: integer
+      sort:
+        description: 排序
+        type: integer
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryListResp:
+    properties:
+      list:
+        description: 分类列表
+        items:
+          $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryList'
+        type: array
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateReq:
+    properties:
+      icon:
+        description: 图标
+        type: string
+      id:
+        description: ID
+        type: integer
+      name:
+        description: 菜单名称
+        type: string
+      parent_id:
+        description: 父类ID
+        type: integer
+      sort:
+        description: 排序
+        type: integer
+      used:
+        description: 是否启用
+        type: boolean
+    required:
+    - id
+    type: object
+  github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateResp:
+    properties:
+      created_at:
+        description: 创建时间
+        type: string
+      icon:
+        description: 图标
+        type: string
+      id:
+        type: integer
+      is_used:
+        description: 是否启用 1:是 0:否
+        type: boolean
+      level:
+        description: 分类等级
+        type: integer
+      parent_id:
+        type: integer
+      sort:
+        description: 排序
+        type: integer
+      title:
+        description: 名称
+        type: string
+      updated_at:
+        description: 更新时间
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: webstack-go API
+  version: 1.0.0
+paths:
+  /api/admin/category:
+    get:
+      consumes:
+      - application/json
+      description: 列表分类
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryListResp'
+      summary: 列表分类
+      tags:
+      - 分类模块
+    post:
+      consumes:
+      - application/json
+      description: 新增分类
+      parameters:
+      - description: params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryCreateReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryCreateResp'
+      summary: 新增分类
+      tags:
+      - 分类模块
+  /api/admin/category/:id:
+    delete:
+      consumes:
+      - application/json
+      description: 删除分类
+      parameters:
+      - description: params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteResp'
+      summary: 删除分类
+      tags:
+      - 分类模块
+    get:
+      consumes:
+      - application/json
+      description: 详情分类
+      parameters:
+      - description: params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDetailReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDetailResp'
+      summary: 详情分类
+      tags:
+      - 分类模块
+  /api/admin/category/update:
+    put:
+      consumes:
+      - application/json
+      description: 更新分类
+      parameters:
+      - description: params
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateResp'
+      summary: 更新分类
+      tags:
+      - 分类模块
+securityDefinitions:
+  Bearer:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

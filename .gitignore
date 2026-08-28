@@ -1,0 +1,9 @@
+bin/
+storage/logs
+.idea
+*.log
+deploy/docker-compose/conf
+deploy/docker-compose/data
+# 注意：storage/webstack-go.db 会随仓库提交（含初始导航数据，部署即用）
+# 如需重置数据，删除该文件后重启服务即可自动重建
+

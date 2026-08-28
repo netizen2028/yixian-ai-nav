@@ -1,0 +1,413 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server celler server.",
+        "title": "webstack-go API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "API Support",
+            "url": "http://www.swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "paths": {
+        "/api/admin/category": {
+            "get": {
+                "description": "列表分类",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类模块"
+                ],
+                "summary": "列表分类",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryListResp"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "新增分类",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类模块"
+                ],
+                "summary": "新增分类",
+                "parameters": [
+                    {
+                        "description": "params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryCreateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryCreateResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/category/:id": {
+            "get": {
+                "description": "详情分类",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类模块"
+                ],
+                "summary": "详情分类",
+                "parameters": [
+                    {
+                        "description": "params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDetailReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDetailResp"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "删除分类",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类模块"
+                ],
+                "summary": "删除分类",
+                "parameters": [
+                    {
+                        "description": "params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/admin/category/update": {
+            "put": {
+                "description": "更新分类",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "分类模块"
+                ],
+                "summary": "更新分类",
+                "parameters": [
+                    {
+                        "description": "params",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateResp"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryCreateReq": {
+            "type": "object",
+            "properties": {
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "level": {
+                    "description": "分类等级 1 一级分类  2 二级分类",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "菜单名称",
+                    "type": "string"
+                },
+                "parent_id": {
+                    "description": "分类父ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryCreateResp": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "创建时间",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_used": {
+                    "description": "是否启用 1:是 0:否",
+                    "type": "boolean"
+                },
+                "level": {
+                    "description": "分类等级",
+                    "type": "integer"
+                },
+                "parent_id": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "description": "排序",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "更新时间",
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteReq": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryDeleteResp": {
+            "type": "object"
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryDetailReq": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryDetailResp": {
+            "type": "object",
+            "properties": {
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "主键ID",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "分类名称",
+                    "type": "string"
+                },
+                "pid": {
+                    "description": "父类ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryList": {
+            "type": "object",
+            "properties": {
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "is_used": {
+                    "description": "是否启用 1=启用 -1=禁用",
+                    "type": "boolean"
+                },
+                "level": {
+                    "description": "分类等级 1 一级分类  2 二级分类",
+                    "type": "integer"
+                },
+                "link": {
+                    "description": "链接地址",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "菜单名称",
+                    "type": "string"
+                },
+                "pid": {
+                    "description": "父类ID",
+                    "type": "integer"
+                },
+                "sort": {
+                    "description": "排序",
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryListResp": {
+            "type": "object",
+            "properties": {
+                "list": {
+                    "description": "分类列表",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_ch3nnn_webstack-go_api_v1.CategoryList"
+                    }
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateReq": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "菜单名称",
+                    "type": "string"
+                },
+                "parent_id": {
+                    "description": "父类ID",
+                    "type": "integer"
+                },
+                "sort": {
+                    "description": "排序",
+                    "type": "integer"
+                },
+                "used": {
+                    "description": "是否启用",
+                    "type": "boolean"
+                }
+            }
+        },
+        "github_com_ch3nnn_webstack-go_api_v1.CategoryUpdateResp": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "description": "创建时间",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "图标",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "is_used": {
+                    "description": "是否启用 1:是 0:否",
+                    "type": "boolean"
+                },
+                "level": {
+                    "description": "分类等级",
+                    "type": "integer"
+                },
+                "parent_id": {
+                    "type": "integer"
+                },
+                "sort": {
+                    "description": "排序",
+                    "type": "integer"
+                },
+                "title": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "updated_at": {
+                    "description": "更新时间",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
