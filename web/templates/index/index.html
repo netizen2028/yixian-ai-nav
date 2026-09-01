@@ -1,44 +1,44 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" data-page-node-id="eANztZnxvykgya4sYJwCvx">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="author" content="viggo"/>
+<head data-page-node-id="kdaqmafcJoREtiJNEfH5AE">
+    <meta charset="UTF-8" data-page-node-id="Zs8lu5OpBIXqZRyS9iDZ2V">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" data-page-node-id="YDxDNEEkKTEHOWw1qbVWVa">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="WnzG0bms7p5QoNXrhaIBtn"/>
+    <meta name="author" content="viggo" data-page-node-id="LfAmOSwwKVoX8MYkRmmUCQ"/>
     <title>{{ if .SelectedCategoryName }}{{ .SelectedCategoryName }} - {{ .ConfigSite.SiteTitle }}{{ else }}{{ .ConfigSite.SiteTitle }}{{ end }}</title>
-    <meta name="keywords" content="{{ .ConfigSite.SiteKeyword }}">
+    <meta name="keywords" content="{{ .ConfigSite.SiteKeyword }}" data-page-node-id="yQqjHJqJxCn1Tpbf7UWKBS">
     {{- $desc := .ConfigSite.SiteDesc -}}
     {{- if .SelectedCategoryDesc -}}{{- $desc = .SelectedCategoryDesc -}}{{- end -}}
-    <meta name="description" content="{{ $desc }}">
-    <meta name="baidu-site-verification" content="codeva-5UAtexoBQg" />
-    {{ if .SelectedCategoryName }}<link rel="canonical" href="https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}">
+    <meta name="description" content="{{ $desc }}" data-page-node-id="aualp5Uwh8cNsD6hfaSrTq">
+    <meta name="baidu-site-verification" content="codeva-5UAtexoBQg" data-page-node-id="KkopuZeGYJSYyAQm31crtz" />
+    {{ if .SelectedCategoryName }}<link rel="canonical" href="https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}" data-page-node-id="fIPOPq7voIV7NMHFBy0kx9">
     <script>var __yixianSelCat = {id: {{ .SelectedCategoryID }}, name: "{{ .SelectedCategoryName }}"};</script>{{ end }}
     {{- $ogTitle := .ConfigSite.SiteTitle -}}
     {{- if .SelectedCategoryName -}}{{- $ogTitle = printf "%s - %s" .SelectedCategoryName .ConfigSite.SiteTitle -}}{{- end -}}
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="未来产业企业导航" />
-    <meta property="og:title" content="{{ $ogTitle }}" />
-    <meta property="og:description" content="{{ $desc }}" />
-    <meta property="og:url" content="{{ if .SelectedCategoryID }}https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}{{ else }}https://2026.yixian.wiki/{{ end }}" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ $ogTitle }}" />
-    <meta name="twitter:description" content="{{ $desc }}" />
+    <meta property="og:type" content="website" data-page-node-id="BMVdfki0FylzTpAMIUICbD" />
+    <meta property="og:site_name" content="未来产业企业导航" data-page-node-id="LwQsNs7KQDbFiyCd6UBWP8" />
+    <meta property="og:title" content="{{ $ogTitle }}" data-page-node-id="t4jfrK6qB9Cjt3kisx0wSY" />
+    <meta property="og:description" content="{{ $desc }}" data-page-node-id="OJC4E8AuRWKvpGXvHVrvL9" />
+    <meta property="og:url" content="{{ if .SelectedCategoryID }}https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}{{ else }}https://2026.yixian.wiki/{{ end }}" data-page-node-id="b82k1BBrPZPVqHvqY4d8RG" />
+    <meta name="twitter:card" content="summary_large_image" data-page-node-id="jSsypdOOkScPoza3SSzXnn" />
+    <meta name="twitter:title" content="{{ $ogTitle }}" data-page-node-id="baQ22ylXWQvkktjLBgRHXG" />
+    <meta name="twitter:description" content="{{ $desc }}" data-page-node-id="YO3wfbbJBOEvNR7jWaxgSl" />
 
     {{ if .ConfigSite.SiteFavicon }}
-        <link rel="shortcut icon" href="data:image/png;base64,{{ .ConfigSite.SiteFavicon }}">
+        <link rel="shortcut icon" href="data:image/png;base64,{{ .ConfigSite.SiteFavicon }}" data-page-node-id="OGehgzTucf0bdBg8VeHIAX">
     {{ else }}
-        <link rel="shortcut icon" href="/assets/static/index/images/favicon.png">
+        <link rel="shortcut icon" href="/assets/static/index/images/favicon.png" data-page-node-id="G3XIey3woFHfO2iDa5J17S">
     {{ end }}
 
-    <link rel="stylesheet" href="/assets/static/index/css/fonts/linecons/css/linecons.css">
-    <link rel="stylesheet" href="/assets/static/index/css/fonts/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/assets/static/index/css/bootstrap.css">
-    <link rel="stylesheet" href="/assets/static/index/css/xenon-core.css">
-    <link rel="stylesheet" href="/assets/static/index/css/xenon-components.css">
-    <link rel="stylesheet" href="/assets/static/index/css/xenon-skins.css">
-    <link rel="stylesheet" href="/assets/static/index/css/nav.css">
-    <link rel="stylesheet" href="/assets/static/index/css/hclonely.css">
+    <link rel="stylesheet" href="/assets/static/index/css/fonts/linecons/css/linecons.css" data-page-node-id="gl8Re8RhhNV6pVqIOr1296">
+    <link rel="stylesheet" href="/assets/static/index/css/fonts/fontawesome/css/font-awesome.min.css" data-page-node-id="fJfOWTEeocDqijNM66wJwG">
+    <link rel="stylesheet" href="/assets/static/index/css/bootstrap.css" data-page-node-id="QgAaSF4Nid66XIknBM5dyB">
+    <link rel="stylesheet" href="/assets/static/index/css/xenon-core.css" data-page-node-id="dmuAgzugZez4wmwXDon4bH">
+    <link rel="stylesheet" href="/assets/static/index/css/xenon-components.css" data-page-node-id="LG57sjvPL7RtNYINcXyJoP">
+    <link rel="stylesheet" href="/assets/static/index/css/xenon-skins.css" data-page-node-id="Euuyc9dNoF03BJbSEKgFKx">
+    <link rel="stylesheet" href="/assets/static/index/css/nav.css" data-page-node-id="Hzf1mYCjH6snKOKHimbdwn">
+    <link rel="stylesheet" href="/assets/static/index/css/hclonely.css" data-page-node-id="ZcOSBPVYsXaMeizXVHttr1">
     <style>
         .yixian-hero {
             text-align: center;
@@ -91,6 +91,7 @@
         .rt-ion { background: #e3f7f4; color: #0d9488; }
         .rt-atom { background: #fff1e0; color: #c2620a; }
         .rt-sense { background: #e6f7ec; color: #1a9e54; }
+        .rt-comm { background: #e8f0fe; color: #1a73e8; }
         .rt-default { background: #eef0f2; color: #555; }
     </style>
     <script src="assets/static/index/js/jquery-1.11.1.min.js"></script>
@@ -107,98 +108,98 @@
     {{ if .JSONLD }}<script type="application/ld+json">{{ .JSONLD }}</script>{{ end }}
 </head>
 
-<body class="page-body">
+<body class="page-body" data-page-node-id="ZUcQkloxcoyghnzR7OyOAI">
 <!-- skin-white -->
-<div class="page-container">
-    <div class="sidebar-menu toggle-others fixed">
-        <div class="sidebar-menu-inner">
-            <header class="logo-env">
+<div class="page-container" data-page-node-id="xYa0FYLpupI7d2AF5D9Obi">
+    <div class="sidebar-menu toggle-others fixed" data-page-node-id="ZSiWoMwh0lgoDG0kA3etSA">
+        <div class="sidebar-menu-inner" data-page-node-id="q57uQlTKL8YXjqsCP3Hzkw">
+            <header class="logo-env" data-page-node-id="FgeQ020qxusNyjfDEhu7qf">
                 <!-- logo -->
-                <div class="logo">
-                    <a href="/" class="logo-expanded">
+                <div class="logo" data-page-node-id="DeywoquEa6L67sUAy1Be9P">
+                    <a href="/" class="logo-expanded" data-page-node-id="AD2ePKUGf75G4HMhafQ0mj">
                         {{ if .ConfigSite.SiteLogo }}
-                            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" style="max-height: 52px; width: auto; max-width: 100%;" alt=""/>
+                            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" style="max-height: 52px; width: auto; max-width: 100%;" alt="" data-page-node-id="l6E9OEkWFhIBMyr8uFFuFt"/>
                         {{ else }}
-                            <img src="assets/static/index/images/logo@2x.png" width="100%" alt=""/>
+                            <img src="assets/static/index/images/logo@2x.png" width="100%" alt="" data-page-node-id="KICAPiAvlBpuesDnJJyPh7"/>
                         {{ end }}
                     </a>
-                    <a href="index.html" class="logo-collapsed">
-                        <img src="assets/static/index/images/logo-collapsed@2x.png" width="40" alt=""/>
+                    <a href="index.html" class="logo-collapsed" data-page-node-id="Qea8Ya640kpLZvZiWAhfFG">
+                        <img src="assets/static/index/images/logo-collapsed@2x.png" width="40" alt="" data-page-node-id="ZCPPrlfuL5fI6eQNN0P1oa"/>
                     </a>
                 </div>
-                <div class="mobile-menu-toggle visible-xs">
-                    <a href="#" data-toggle="user-info-menu">
-                        <i class="linecons-cog"></i>
+                <div class="mobile-menu-toggle visible-xs" data-page-node-id="ScLGqPSCO7qXThZ6swVHfe">
+                    <a href="#" data-toggle="user-info-menu" data-page-node-id="fZbuUEMIJI5SFowMkKy98C">
+                        <i class="linecons-cog" data-page-node-id="yhB17qUGY64UN6iu1u3f2D"></i>
                     </a>
-                    <a href="#" data-toggle="mobile-menu">
-                        <i class="fa-bars"></i>
+                    <a href="#" data-toggle="mobile-menu" data-page-node-id="uMcTdyh7ZRVp6IcuRJX7XE">
+                        <i class="fa-bars" data-page-node-id="8KULze6h5VLec17htYNthH"></i>
                     </a>
                 </div>
             </header>
-            <ul id="main-menu" class="main-menu">
+            <ul id="main-menu" class="main-menu" data-page-node-id="6jDK9iaNeXExb6nBRAlFpN">
                 {{ range .CategoryTree }}
                 {{ if .Child }}
-                <li>
-                    <a>
-                        <i class="{{ .Icon }}"></i>
-                        <span class="title">{{ .Name }}</span>
+                <li data-page-node-id="T4tnkvsbVGBzqM3keyLjob">
+                    <a data-page-node-id="aKxjyihYiiUsEHKPWyBCq6">
+                        <i class="{{ .Icon }}" data-page-node-id="9Blvd7KWUNElC1ILrIaAy2"></i>
+                        <span class="title" data-page-node-id="jbtMWbdQANb2Gy65PwdKrV">{{ .Name }}</span>
                     </a>
-                    <ul>
+                    <ul data-page-node-id="q2LoLilC8mtBt6n3gEoFxK">
                         {{ range .Child }}
-                        <li>
-                            <a href="#{{ .Name }}" class="smooth"><span class="title">{{ .Name }}</span></a>
+                        <li data-page-node-id="6IieoRFTEYFSccJtUEpBMB">
+                            <a href="#{{ .Name }}" class="smooth" data-page-node-id="SxxHEkTnCx2gWd3WrhAJCQ"><span class="title" data-page-node-id="EjuAo1pyt1dUBbJDInj8Tp">{{ .Name }}</span></a>
                         </li>
                         {{ end }}
                     </ul>
                 </li>
                 {{ else }}
-                <li>
-                    <a href="#{{ .Name }}" class="smooth">
-                        <i class="{{ .Icon }}"></i>
-                        <span class="title">{{.Name}}</span>
+                <li data-page-node-id="uqpFn3DFftv40210lTby0W">
+                    <a href="#{{ .Name }}" class="smooth" data-page-node-id="cqvsOELpRI6hkDVWmdHRD7">
+                        <i class="{{ .Icon }}" data-page-node-id="YREPY6tPVra5fCkWs2Yx0N"></i>
+                        <span class="title" data-page-node-id="nAEk0gxUwCxz35vgKypsNa">{{.Name}}</span>
                     </a>
                 </li>
                 {{ end }}
                 {{ end }}
 
                 {{ if .About.IsAbout }}
-                <li>
-                    <a href="/about">
-                        <i class="lni lni-heart"></i>
-                        <span class="tooltip-blue">关于本站</span>
-                        <span class="label label-Primary pull-right hidden-collapsed">♥︎</span>
+                <li data-page-node-id="4mqOhfxU36ZEqthnonq6qJ">
+                    <a href="/about" data-page-node-id="JF746BTyMLlM02FZpfqBKt">
+                        <i class="lni lni-heart" data-page-node-id="Cd9pHAMPz5N1oRFxDfMDug"></i>
+                        <span class="tooltip-blue" data-page-node-id="Anr1ABXOuAn9Dago2Wdj3O">关于本站</span>
+                        <span class="label label-Primary pull-right hidden-collapsed" data-page-node-id="oFFYQ1JivzuGoK7HOUWTc5">♥︎</span>
                     </a>
                 </li>
                 {{ end }}
             </ul>
         </div>
     </div>
-    <div class="main-content">
-        <nav class="navbar user-info-navbar" role="navigation">
+    <div class="main-content" data-page-node-id="NCQ4YbRpCsiZpCNWTeyQds">
+        <nav class="navbar user-info-navbar" role="navigation" data-page-node-id="YkI48MTI0A5Mn1F3kYldyI">
             <!-- User Info, Notifications and Menu Bar -->
             <!-- Left links for user info navbar -->
-            <ul class="user-info-menu left-links list-inline list-unstyled">
-                <li class="hidden-sm hidden-xs">
-                    <a href="#" data-toggle="sidebar">
-                        <i class="fa-bars"></i>
+            <ul class="user-info-menu left-links list-inline list-unstyled" data-page-node-id="ddDFiFqhJ0QpqFcacoCFsU">
+                <li class="hidden-sm hidden-xs" data-page-node-id="ln2lH6hcJF5fNCVD4MNwpU">
+                    <a href="#" data-toggle="sidebar" data-page-node-id="HSoyZUiqjS4yyp3I0jRkC2">
+                        <i class="fa-bars" data-page-node-id="S6CZGoilIRniKfc27hN8SL"></i>
                     </a>
                 </li>
                 <!-- 暗黑模式 -->
-                <li class="switch-mode hover-line" onclick="switchNightMode()">
-                    <a href="#">
+                <li class="switch-mode hover-line" onclick="switchNightMode()" data-page-node-id="emmXlQO3zaNTTEevrmzuQc">
+                    <a href="#" data-page-node-id="Rftq4U37HBKYMRnFEGqmS4">
                         <svg t="1593061068148" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                             p-id="1681" width="16" height="16">
+                             p-id="1681" width="16" height="16" data-page-node-id="1fx2Fg5lGIpJOt0uuH2Ki2">
                             <path d="M582.4 326.4c-140.8 0-256 115.2-256 256s115.2 256 256 256 256-115.2 256-256-115.2-256-256-256z m0 448c-70.4 0-131.2-36.8-164.8-92.8 12.8 3.2 27.2 4.8 40 4.8 121.6 0 219.2-99.2 219.2-219.2 0-17.6-1.6-35.2-6.4-52.8 60.8 32 102.4 96 102.4 169.6 1.6 104-84.8 190.4-190.4 190.4zM582.4 262.4c17.6 0 32-14.4 32-32v-128c0-17.6-14.4-32-32-32s-32 14.4-32 32v128c0 17.6 14.4 32 32 32zM262.4 582.4c0-17.6-14.4-32-32-32h-128c-17.6 0-32 14.4-32 32s14.4 32 32 32h128c17.6 0 32-14.4 32-32zM310.4 356.8c6.4 6.4 14.4 9.6 22.4 9.6 8 0 16-3.2 22.4-9.6 12.8-12.8 12.8-32 0-44.8l-91.2-91.2c-12.8-12.8-32-12.8-44.8 0-12.8 12.8-12.8 32 0 44.8l91.2 91.2zM944 220.8c-12.8-12.8-32-12.8-44.8 0l-91.2 91.2c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 14.4 9.6 22.4 9.6 8 0 16-3.2 22.4-9.6l91.2-91.2c12.8-12.8 12.8-33.6 0-44.8zM310.4 808l-91.2 91.2c-12.8 12.8-12.8 32 0 44.8 6.4 6.4 14.4 9.6 22.4 9.6 8 0 16-3.2 22.4-9.6l91.2-91.2c12.8-12.8 12.8-32 0-44.8-11.2-11.2-32-11.2-44.8 0z"
-                                  p-id="1682" fill="#707070"></path>
+                                  p-id="1682" fill="#707070" data-page-node-id="nJg5AdhjaI7Vd6XBSzVHBV"></path>
                         </svg>
                     </a>
                 </li>
 
             </ul>
-            <ul class="user-info-menu right-links list-inline list-unstyled">
-                <li class="hidden-sm hidden-xs">
-                    <a href="/about" target="_blank">
-                        <i class="linecons-heart"></i> 壹线产业观察
+            <ul class="user-info-menu right-links list-inline list-unstyled" data-page-node-id="1p6Fke2ACRdNiZeoEp4SXM">
+                <li class="hidden-sm hidden-xs" data-page-node-id="xzWRuqb7uNCpN9SuQQ63M1">
+                    <a href="/about" target="_blank" data-page-node-id="xsGe40xFmBKNSUjHRoyskd">
+                        <i class="linecons-heart" data-page-node-id="JmuIXg4BxeyG5w5TjltWHI"></i> 壹线产业观察
                     </a>
                 </li>
             </ul>
@@ -206,32 +207,32 @@
 
         </nav>
         <!-- 品牌 Hero -->
-        <section class="yixian-hero">
-            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" class="yixian-hero-logo" alt="壹线产业观察"/>
-            <h1 class="yixian-hero-title">未来产业企业导航<span class="dot"></span></h1>
+        <section class="yixian-hero" data-page-node-id="kVdJyFcuAVzhoSgrjafl2e">
+            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" class="yixian-hero-logo" alt="壹线产业观察" data-page-node-id="DYMwqR4h3e7SLML3rOCVkm"/>
+            <h1 class="yixian-hero-title" data-page-node-id="Jzn1gzEZuZd0iFNH25kGf6">未来产业企业导航<span class="dot" data-page-node-id="TtIdAus9zeoxEGqt32Wx82"></span></h1>
         </section>
         <!-- 搜索 -->
-        <section class="sousuo">
-            <div class="search">
-                <div class="search-box">
+        <section class="sousuo" data-page-node-id="lI1LiJmAOkqzeSUN0CSMpP">
+            <div class="search" data-page-node-id="zcWHkKso5Jas42ObwgAgRL">
+                <div class="search-box" data-page-node-id="wm0ABpzqktes7fcCtzlfhj">
                     <span class="search-icon"
-                          style="background: url(/assets/static/index/images/search_icon.png) 0px 0px; opacity: 1;"></span>
-                    <input type="text" id="txt" class="search-input" autocomplete="off" placeholder="请输入关键字，按回车 / Enter 搜索">
-                    <button class="search-btn" id="search-btn"><i class="fa fa-search"></i></button>
+                          style="background: url(/assets/static/index/images/search_icon.png) 0px 0px; opacity: 1;" data-page-node-id="r17obIK017F2u6O3D1VedX"></span>
+                    <input type="text" id="txt" class="search-input" autocomplete="off" placeholder="请输入关键字，按回车 / Enter 搜索" data-page-node-id="E4YZCvtbx377otozvbXjhj">
+                    <button class="search-btn" id="search-btn" data-page-node-id="4uVcREf0SE7ZQLDzFzBtBY"><i class="fa fa-search" data-page-node-id="cFshOwD8jCrCPIj61618r4"></i></button>
                 </div>
                 <!-- 搜索热词 -->
-                <div class="box search-hot-text" id="box" style="display: none;">
-                    <ul></ul>
+                <div class="box search-hot-text" id="box" style="display: none;" data-page-node-id="6EOkdIzWB2gNdXK8DTqoFw">
+                    <ul data-page-node-id="gxQraks3DuN5YdKjN5Ha6G"></ul>
                 </div>
                 <!-- 搜索引擎 -->
-                <div class="search-engine" style="display: none;">
-                    <div class="search-engine-head">
-                        <strong class="search-engine-tit">选择您的默认搜索引擎：</strong>
-                        <div class="search-engine-tool">
-                            搜索热词： <span id="hot-btn" style="background-image: url(/assets/bootstrap/images/index/off_on.png);"></span>
+                <div class="search-engine" style="display: none;" data-page-node-id="pXaPjteqbiSi3y7HYSXbkE">
+                    <div class="search-engine-head" data-page-node-id="VAhmGxppEljGvraghXAlQM">
+                        <strong class="search-engine-tit" data-page-node-id="omnm6hxRCqVsZ6awwTAi6h">选择您的默认搜索引擎：</strong>
+                        <div class="search-engine-tool" data-page-node-id="zXBT7XpmYbPKIJKXbqAYGj">
+                            搜索热词： <span id="hot-btn" style="background-image: url(/assets/bootstrap/images/index/off_on.png);" data-page-node-id="vq7HE4Co5LFK6S4V4At8nS"></span>
                         </div>
                     </div>
-                    <ul class="search-engine-list search-engine-list_zmki_ul">
+                    <ul class="search-engine-list search-engine-list_zmki_ul" data-page-node-id="4M7ickDTUKqFuF9A5Wapsj">
                     </ul>
                 </div>
             </div>
@@ -240,53 +241,53 @@
         <!-- 常用推荐 -->
         {{ range .CategorySites }}
         {{ if .SiteList }}
-        <h4 class="text-gray"><i class="linecons-tag" style="margin-right: 7px;" id="{{ .Category }}"></i>{{ .Category }}</h4>
-        <div class="row">
+        <h4 class="text-gray" data-page-node-id="No9CIv5HdgdYzUv8CGoXgL"><i class="linecons-tag" style="margin-right: 7px;" id="{{ .Category }}" data-page-node-id="wBi3x8BzqBhYzOiDRdo627"></i>{{ .Category }}</h4>
+        <div class="row" data-page-node-id="We0TNPuXtM5wzFNqZ4h617">
             {{ range .SiteList }}
-            <div class="col-sm-3">
+            <div class="col-sm-3" data-page-node-id="KBGpfeH1YUbU8JTMiPhBvd">
                 <div class="xe-widget xe-conversations box2 label-info" onclick="window.open('{{ .URL }}', '_blank')"
-                     data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ .Description }}">
-                    <div class="xe-comment-entry">
-                        <a class="xe-user-img">
-                            <img data-src="data:image/png;base64,{{ .Icon }}" class="lozad img-circle" width="40">
+                     data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ .Description }}" data-page-node-id="5zFS932LUhuwzethURBiGF">
+                    <div class="xe-comment-entry" data-page-node-id="Dcb16mjDdo9maHWqpx8IIO">
+                        <a class="xe-user-img" data-page-node-id="PGue4Oz6j8AZHQMkpwQ3Pr">
+                            <img data-src="data:image/png;base64,{{ .Icon }}" class="lozad img-circle" width="40" data-page-node-id="TUMMEEuRI5h1QzrKENKZca">
                         </a>
-                        <div class="xe-comment">
-                            <a href="#" class="xe-user-name overflowClip_1">
-                                <strong>{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag {{ if eq .Tag "超导" }}rt-sup{{ else if eq .Tag "光量子" }}rt-photonic{{ else if eq .Tag "离子阱" }}rt-ion{{ else if eq .Tag "中性原子" }}rt-atom{{ else if eq .Tag "量子传感与通信" }}rt-sense{{ else }}rt-default{{ end }}">{{ .Tag }}</span>{{ end }}
+                        <div class="xe-comment" data-page-node-id="sZhAJfZnOpPMhmAa9Wctnc">
+                            <a href="#" class="xe-user-name overflowClip_1" data-page-node-id="mSkWKWi0QtbA5eSFHN6NFh">
+                                <strong data-page-node-id="VEA3AqARaO5uiDXp7wTwHd">{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag {{ if eq .Tag "超导" }}rt-sup{{ else if eq .Tag "光量子" }}rt-photonic{{ else if eq .Tag "离子阱" }}rt-ion{{ else if eq .Tag "中性原子" }}rt-atom{{ else if eq .Tag "量子传感与通信" }}rt-sense{{ else if eq .Tag "量子通讯" }}rt-comm{{ else }}rt-default{{ end }}" data-page-node-id="2ZwYnzZziGuHg7TXHtjCBO">{{ .Tag }}</span>{{ end }}
                             </a>
-                            <p class="overflowClip_2">{{ .Description }}</p>
+                            <p class="overflowClip_2" data-page-node-id="6hb03murPQ6heeEoKj4Nhj">{{ .Description }}</p>
                         </div>
                     </div>
                 </div>
             </div>
             {{ end }}
         </div>
-        <br/>
+        <br data-page-node-id="DQwBNvWwaM6uf7wc23H8PG"/>
         {{ end }}
         {{ end }}
         <!-- END 常用推荐 -->
-        <footer class="main-footer sticky footer-type-1">
-            <div class="footer-inner">
+        <footer class="main-footer sticky footer-type-1" data-page-node-id="0S9NwWtwfjBny4WkDAdNlv">
+            <div class="footer-inner" data-page-node-id="u0RFAzY3Q5ZAwnu6nL5GqV">
                 <!-- Add your copyright text here -->
                 {{ if .ConfigSite.SiteRecord }}
-                <div class="footer-text">
-                   <a href="{{ .ConfigSite.SiteURL }}" target="_blank" rel="noopener noreferrer">
-                       <strong>{{ .ConfigSite.SiteRecord }}</strong>
+                <div class="footer-text" data-page-node-id="zGNaADLK1m1OA6zbHqhdDU">
+                   <a href="{{ .ConfigSite.SiteURL }}" target="_blank" rel="noopener noreferrer" data-page-node-id="OPGCN18TdmOVGQyGupGyYk">
+                       <strong data-page-node-id="GH223IahrP1qIKZXKxbfX3">{{ .ConfigSite.SiteRecord }}</strong>
                    </a>
                 </div>
                 {{ else }}
-                <div class="footer-text">
+                <div class="footer-text" data-page-node-id="oAM5ORPUBogd6Kf7yHAblQ">
                     &copy; 2026
-                    <a href="/" >
-                        <strong>壹线 AI应用企业导航</strong>
+                    <a href="/" data-page-node-id="6Hf4r2yrj3zc2xmgfBFyyW" >
+                        <strong data-page-node-id="utvPBmkgR7ZPIqdf29cso4">壹线 AI应用企业导航</strong>
                     </a>
                     · 数据整理自公开信息源，以官网为准
                 </div>
                 {{ end }}
                 <!-- Go to Top Link, just add rel="go-top" to any link to add this functionality -->
-                <div class="go-up">
-                    <a href="#" rel="go-top">
-                        <i class="fa-angle-up"></i>
+                <div class="go-up" data-page-node-id="Cn7sL7BzLwvWb60BD1v0ZK">
+                    <a href="#" rel="go-top" data-page-node-id="nkAORBiSfmFM8Wvo5GRzug">
+                        <i class="fa-angle-up" data-page-node-id="f3yKGvgWimuh7dAKFjGgZU"></i>
                     </a>
                 </div>
             </div>
@@ -375,5 +376,21 @@
 <!-- JavaScripts initializations and stuff -->
 <script src="assets/static/index/js/xenon-custom.js"></script>
 <script src="assets/static/index/js/lozad.js"></script>
+<!-- 路线标签通用配色：未匹配固定路线的标签(含其他板块的标签)按文本哈希生成稳定色，无需重编译即可适配任意新路线 -->
+<script>
+(function () {
+    var palettes = [
+        ['#e7f0ff', '#1f6feb'], ['#f1e9ff', '#7c3aed'], ['#e3f7f4', '#0d9488'],
+        ['#fff1e0', '#c2620a'], ['#e6f7ec', '#1a9e54'], ['#e8f0fe', '#1a73e8'],
+        ['#fde8ef', '#c2185b'], ['#eafaf0', '#2e7d32'], ['#fff4e5', '#e65100'],
+        ['#eef2ff', '#4338ca'], ['#f0f9ff', '#0369a1'], ['#fef3c7', '#b45309']
+    ];
+    function hash(s) { var h = 0; for (var i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) >>> 0; } return h; }
+    document.querySelectorAll('.yixian-route-tag.rt-default').forEach(function (el) {
+        var c = palettes[hash(el.textContent.trim()) % palettes.length];
+        el.style.background = c[0]; el.style.color = c[1];
+    });
+})();
+</script>
 </body>
 </html>
