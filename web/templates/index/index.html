@@ -6,9 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="author" content="viggo"/>
-    <title>{{ .ConfigSite.SiteTitle }}</title>
+    <title>{{ if .SelectedCategoryName }}{{ .SelectedCategoryName }} - {{ .ConfigSite.SiteTitle }}{{ else }}{{ .ConfigSite.SiteTitle }}{{ end }}</title>
     <meta name="keywords" content="{{ .ConfigSite.SiteKeyword }}">
-    <meta name="description" content="{{ .ConfigSite.SiteDesc }}">
+    {{- $desc := .ConfigSite.SiteDesc -}}
+    {{- if .SelectedCategoryDesc -}}{{- $desc = .SelectedCategoryDesc -}}{{- end -}}
+    <meta name="description" content="{{ $desc }}">
+    <meta name="baidu-site-verification" content="codeva-5UAtexoBQg" />
+    {{ if .SelectedCategoryName }}<link rel="canonical" href="https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}">
+    <script>var __yixianSelCat = {id: {{ .SelectedCategoryID }}, name: "{{ .SelectedCategoryName }}"};</script>{{ end }}
+    {{- $ogTitle := .ConfigSite.SiteTitle -}}
+    {{- if .SelectedCategoryName -}}{{- $ogTitle = printf "%s - %s" .SelectedCategoryName .ConfigSite.SiteTitle -}}{{- end -}}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="未来产业企业导航" />
+    <meta property="og:title" content="{{ $ogTitle }}" />
+    <meta property="og:description" content="{{ $desc }}" />
+    <meta property="og:url" content="{{ if .SelectedCategoryID }}https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}{{ else }}https://2026.yixian.wiki/{{ end }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ $ogTitle }}" />
+    <meta name="twitter:description" content="{{ $desc }}" />
 
     {{ if .ConfigSite.SiteFavicon }}
         <link rel="shortcut icon" href="data:image/png;base64,{{ .ConfigSite.SiteFavicon }}">
@@ -24,6 +39,60 @@
     <link rel="stylesheet" href="/assets/static/index/css/xenon-skins.css">
     <link rel="stylesheet" href="/assets/static/index/css/nav.css">
     <link rel="stylesheet" href="/assets/static/index/css/hclonely.css">
+    <style>
+        .yixian-hero {
+            text-align: center;
+            padding: 45px 20px 25px;
+            background: #fff;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .yixian-hero-logo {
+            max-width: 520px;
+            width: 90%;
+            height: auto;
+            margin: 0 auto 16px;
+            display: block;
+        }
+        .yixian-hero-title {
+            font-family: "Outfit", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: #111;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        .yixian-hero-title .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #00e676;
+            border-radius: 50%;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        @media (max-width: 768px) {
+            .yixian-hero { padding: 30px 15px 20px; }
+            .yixian-hero-title { font-size: 22px; }
+        }
+        .yixian-route-tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            padding: 3px 7px;
+            border-radius: 4px;
+            margin-left: 6px;
+            vertical-align: middle;
+            font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+            white-space: nowrap;
+        }
+        .rt-sup { background: #e7f0ff; color: #1f6feb; }
+        .rt-photonic { background: #f1e9ff; color: #7c3aed; }
+        .rt-ion { background: #e3f7f4; color: #0d9488; }
+        .rt-atom { background: #fff1e0; color: #c2620a; }
+        .rt-sense { background: #e6f7ec; color: #1a9e54; }
+        .rt-default { background: #eef0f2; color: #555; }
+    </style>
     <script src="assets/static/index/js/jquery-1.11.1.min.js"></script>
     <script>
         var userDefinedSearchData = {
@@ -35,6 +104,7 @@
         };
     </script>
     <script src="assets/static/index/js/header.js"></script>
+    {{ if .JSONLD }}<script type="application/ld+json">{{ .JSONLD }}</script>{{ end }}
 </head>
 
 <body class="page-body">
@@ -47,7 +117,7 @@
                 <div class="logo">
                     <a href="/" class="logo-expanded">
                         {{ if .ConfigSite.SiteLogo }}
-                            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" width="100%" alt=""/>
+                            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" style="max-height: 52px; width: auto; max-width: 100%;" alt=""/>
                         {{ else }}
                             <img src="assets/static/index/images/logo@2x.png" width="100%" alt=""/>
                         {{ end }}
@@ -135,6 +205,11 @@
             <!-- <a href="https://github.com/WebStackPage/WebStackPage.github.io" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a> -->
 
         </nav>
+        <!-- 品牌 Hero -->
+        <section class="yixian-hero">
+            <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" class="yixian-hero-logo" alt="壹线产业观察"/>
+            <h1 class="yixian-hero-title">未来产业企业导航<span class="dot"></span></h1>
+        </section>
         <!-- 搜索 -->
         <section class="sousuo">
             <div class="search">
@@ -177,7 +252,7 @@
                         </a>
                         <div class="xe-comment">
                             <a href="#" class="xe-user-name overflowClip_1">
-                                <strong>{{ .Title }}</strong>
+                                <strong>{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag {{ if eq .Tag "超导" }}rt-sup{{ else if eq .Tag "光量子" }}rt-photonic{{ else if eq .Tag "离子阱" }}rt-ion{{ else if eq .Tag "中性原子" }}rt-atom{{ else if eq .Tag "量子传感与通信" }}rt-sense{{ else }}rt-default{{ end }}">{{ .Tag }}</span>{{ end }}
                             </a>
                             <p class="overflowClip_2">{{ .Description }}</p>
                         </div>
@@ -259,26 +334,35 @@
 
             public_vars.$mainMenu.add(public_vars.$sidebarProfile).toggleClass('mobile-is-visible');
             ps_destroy();
+            var target = document.getElementById(decodeURI($(this).attr("href")).replace(/^#/, ""));
+            if (!target) { return false; }
             $("html, body").animate({
-                scrollTop: $(decodeURI($(this).attr("href"))).offset().top - 30
+                scrollTop: $(target).offset().top - 30
             }, {
                 duration: 500,
                 easing: "swing"
             });
+            $("#main-menu li").removeClass("active");
+            $(this).closest("li").addClass("active");
         });
-        return false;
-    });
 
-    var href = "";
-    var pos = 0;
-    $("a.smooth").click(function (e) {
-        $("#main-menu li").each(function () {
-            $(this).removeClass("active");
-        });
-        $(this).parent("li").addClass("active");
-        e.preventDefault();
-        href = decodeURI($(this).attr("href"));
-        pos = $(href).position().top - 30;
+        // SEO: 打开带 ?category=<id> 的分类独立 URL 时，自动滚动到对应分区
+        if (window.__yixianSelCat && __yixianSelCat.name) {
+            var selTarget = document.getElementById(__yixianSelCat.name);
+            if (selTarget) {
+                setTimeout(function () {
+                    $("html, body").animate({
+                        scrollTop: $(selTarget).offset().top - 30
+                    }, { duration: 500, easing: "swing" });
+                }, 300);
+                $("#main-menu li a.smooth").each(function () {
+                    if (decodeURI($(this).attr("href")).replace(/^#/, "") === __yixianSelCat.name) {
+                        $(this).closest("li").addClass("active");
+                    }
+                });
+            }
+        }
+        return false;
     });
 </script>
 <!-- Bottom Scripts -->
