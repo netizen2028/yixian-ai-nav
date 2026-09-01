@@ -143,7 +143,7 @@ func TestService_Index(t *testing.T) {
 	configFunc.EXPECT().FindOne(gomock.Any()).Return(sysConfig, nil)
 
 	configService := NewService(srv, siteDao, categoryDao, configDao)
-	_, err := configService.Index(ctx)
+	_, err := configService.Index(ctx, 0)
 
 	assert.NoError(t, err)
 }

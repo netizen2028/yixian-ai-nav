@@ -5,7 +5,11 @@
 
 package v1
 
-import "github.com/ch3nnn/webstack-go/internal/dal/model"
+import (
+	"html/template"
+
+	"github.com/ch3nnn/webstack-go/internal/dal/model"
+)
 
 type TreeNode struct {
 	Id    int         // 节点ID
@@ -38,10 +42,14 @@ type ConfigSite struct {
 }
 
 type IndexResp struct {
-	About         *About          // 关于页面
-	ConfigSite    *ConfigSite     // 站点配置
-	CategoryTree  []*TreeNode     // 分类树
-	CategorySites []*CategorySite // 归类站点数据
+	About                *About          // 关于页面
+	ConfigSite           *ConfigSite     // 站点配置
+	CategoryTree         []*TreeNode     // 分类树
+	CategorySites        []*CategorySite // 归类站点数据
+	SelectedCategoryID   int             // 当前选中分类ID（来自 ?category=N，0 表示未选中）
+	SelectedCategoryName string          // 当前选中分类名（未选中时为空）
+	SelectedCategoryDesc string          // 当前选中分类的 description（未选中时为空，回退站点描述）
+	JSONLD               template.JS     // JSON-LD 结构化数据（已序列化，模板内原样输出）
 }
 
 type AboutResp struct {

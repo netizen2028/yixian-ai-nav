@@ -20,8 +20,8 @@ var _ Service = (*service)(nil)
 type Service interface {
 	i()
 
-	// Index 首页
-	Index(ctx context.Context) (*v1.IndexResp, error)
+	// Index 首页，categoryID 为 ?category=N 传入的分类ID（0 表示未筛选）
+	Index(ctx context.Context, categoryID int) (*v1.IndexResp, error)
 	// About 关于我
 	About(ctx *gin.Context) (*v1.AboutResp, error)
 }

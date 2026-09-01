@@ -7,7 +7,11 @@ package index
 
 import (
 	"context"
+	"encoding/json"
+	"html/template"
 	"sort"
+	"strconv"
+	"strings"
 
 	"golang.org/x/sync/errgroup"
 
@@ -73,8 +77,102 @@ func categorySites(sites []*model.StSite, treeNodes []*v1.TreeNode) (data []*v1.
 	return data
 }
 
+// findCategoryName 从分类列表中查找分类名
+func findCategoryName(categories []*model.StCategory, id int) string {
+	for _, c := range categories {
+		if c.ID == id {
+			return c.Title
+		}
+	}
+	return ""
+}
+
+// countCategorySites 统计指定分类下的站点数量
+func countCategorySites(categorySites []*v1.CategorySite, name string) int {
+	for _, cs := range categorySites {
+		if cs.Category == name {
+			return len(cs.SiteList)
+		}
+	}
+	return 0
+}
+
+// buildCategoryDesc 生成选中分类的 description（分类表无描述字段，按分类名与收录量组装）
+func buildCategoryDesc(name string, count int) string {
+	if name == "" {
+		return ""
+	}
+	return strings.TrimSpace(name) + "企业名录 - 精选收录 " + strconv.Itoa(count) + " 家企业，一站直达官网"
+}
+
+// buildJSONLD 生成 JSON-LD 结构化数据（WebSite + SearchAction，选中分类时追加 ItemList）
+func buildJSONLD(cfg *model.SysConfig, categorySites []*v1.CategorySite, selectedName string) template.JS {
+	siteURL := strings.TrimRight(cfg.SiteURL, "/")
+	if siteURL == "" {
+		siteURL = "https://2026.yixian.wiki"
+	}
+
+	graph := []map[string]interface{}{
+		{
+			"@type":       "WebSite",
+			"@id":         siteURL + "/#website",
+			"url":         siteURL + "/",
+			"name":        cfg.SiteTitle,
+			"description": cfg.SiteDesc,
+			"publisher":   map[string]interface{}{"@id": siteURL + "/#organization"},
+			"potentialAction": []map[string]interface{}{{
+				"@type":       "SearchAction",
+				"target":      map[string]string{"@type": "EntryPoint", "urlTemplate": siteURL + "/?s={search_term_string}"},
+				"query-input": "required name=search_term_string",
+			}},
+		},
+		{
+			"@type": "Organization",
+			"@id":   siteURL + "/#organization",
+			"name":  cfg.SiteTitle,
+			"url":   siteURL + "/",
+		},
+	}
+
+	// 选中分类时，输出该分类下的站点列表
+	if selectedName != "" {
+		items := make([]map[string]interface{}, 0, 32)
+		pos := 0
+		for _, cs := range categorySites {
+			if cs.Category != selectedName {
+				continue
+			}
+			for _, site := range cs.SiteList {
+				pos++
+				items = append(items, map[string]interface{}{
+					"@type":    "ListItem",
+					"position": pos,
+					"name":     site.Title,
+					"url":      site.URL,
+				})
+			}
+		}
+		if len(items) > 0 {
+			graph = append(graph, map[string]interface{}{
+				"@type":           "ItemList",
+				"name":            selectedName,
+				"itemListElement": items,
+			})
+		}
+	}
+
+	raw, err := json.Marshal(map[string]interface{}{
+		"@context": "https://schema.org",
+		"@graph":   graph,
+	})
+	if err != nil {
+		return ""
+	}
+	return template.JS(raw)
+}
+
 // Index 获取首页数据
-func (s *service) Index(ctx context.Context) (*v1.IndexResp, error) {
+func (s *service) Index(ctx context.Context, categoryID int) (*v1.IndexResp, error) {
 	var (
 		g          errgroup.Group
 		sysConfig  *model.SysConfig
@@ -115,6 +213,16 @@ func (s *service) Index(ctx context.Context) (*v1.IndexResp, error) {
 	categoryTree := categoryTree(buildTree(nodes, 0))
 	categorySites := categorySites(sites, categoryTree)
 
+	// 选中的分类（?category=N）：仅用于标题 / canonical / JSON-LD，页面仍展示全部分类并锚点定位
+	var selectedName string
+	if categoryID > 0 {
+		selectedName = findCategoryName(categories, categoryID)
+		if selectedName == "" {
+			// 分类不存在或已下线时不作为选中项，避免出现无效 canonical
+			categoryID = 0
+		}
+	}
+
 	return &v1.IndexResp{
 		ConfigSite: &v1.ConfigSite{
 			SiteTitle:   sysConfig.SiteTitle,
@@ -130,7 +238,11 @@ func (s *service) Index(ctx context.Context) (*v1.IndexResp, error) {
 			AboutAuthor: sysConfig.AboutAuthor,
 			IsAbout:     sysConfig.IsAbout,
 		},
-		CategoryTree:  categoryTree,
-		CategorySites: categorySites,
+		CategoryTree:         categoryTree,
+		CategorySites:        categorySites,
+		SelectedCategoryID:   categoryID,
+		SelectedCategoryName: selectedName,
+		SelectedCategoryDesc: buildCategoryDesc(selectedName, countCategorySites(categorySites, selectedName)),
+		JSONLD:               buildJSONLD(sysConfig, categorySites, selectedName),
 	}, nil
 }

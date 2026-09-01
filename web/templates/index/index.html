@@ -17,7 +17,7 @@
     {{- $ogTitle := .ConfigSite.SiteTitle -}}
     {{- if .SelectedCategoryName -}}{{- $ogTitle = printf "%s - %s" .SelectedCategoryName .ConfigSite.SiteTitle -}}{{- end -}}
     <meta property="og:type" content="website" data-page-node-id="BMVdfki0FylzTpAMIUICbD" />
-    <meta property="og:site_name" content="未来产业企业导航" data-page-node-id="LwQsNs7KQDbFiyCd6UBWP8" />
+    <meta property="og:site_name" content="{{ .ConfigSite.SiteTitle }}" data-page-node-id="LwQsNs7KQDbFiyCd6UBWP8" />
     <meta property="og:title" content="{{ $ogTitle }}" data-page-node-id="t4jfrK6qB9Cjt3kisx0wSY" />
     <meta property="og:description" content="{{ $desc }}" data-page-node-id="OJC4E8AuRWKvpGXvHVrvL9" />
     <meta property="og:url" content="{{ if .SelectedCategoryID }}https://2026.yixian.wiki/?category={{ .SelectedCategoryID }}{{ else }}https://2026.yixian.wiki/{{ end }}" data-page-node-id="b82k1BBrPZPVqHvqY4d8RG" />
@@ -92,6 +92,10 @@
         .rt-atom { background: #fff1e0; color: #c2620a; }
         .rt-sense { background: #e6f7ec; color: #1a9e54; }
         .rt-comm { background: #e8f0fe; color: #1a73e8; }
+        .rt-hardware { background: #eef2ff; color: #4338ca; }
+        .rt-software { background: #f0f9ff; color: #0369a1; }
+        .rt-security { background: #fde8ef; color: #c2185b; }
+        .rt-sensor { background: #eafaf0; color: #2e7d32; }
         .rt-default { background: #eef0f2; color: #555; }
     </style>
     <script src="assets/static/index/js/jquery-1.11.1.min.js"></script>
@@ -209,7 +213,7 @@
         <!-- 品牌 Hero -->
         <section class="yixian-hero" data-page-node-id="kVdJyFcuAVzhoSgrjafl2e">
             <img src="data:image/png;base64,{{ .ConfigSite.SiteLogo }}" class="yixian-hero-logo" alt="壹线产业观察" data-page-node-id="DYMwqR4h3e7SLML3rOCVkm"/>
-            <h1 class="yixian-hero-title" data-page-node-id="Jzn1gzEZuZd0iFNH25kGf6">未来产业企业导航<span class="dot" data-page-node-id="TtIdAus9zeoxEGqt32Wx82"></span></h1>
+            <h1 class="yixian-hero-title" data-page-node-id="Jzn1gzEZuZd0iFNH25kGf6">{{ if .ConfigSite.SiteTitle }}{{ .ConfigSite.SiteTitle }}{{ else }}未来产业企业导航{{ end }}<span class="dot" data-page-node-id="TtIdAus9zeoxEGqt32Wx82"></span></h1>
         </section>
         <!-- 搜索 -->
         <section class="sousuo" data-page-node-id="lI1LiJmAOkqzeSUN0CSMpP">
@@ -253,7 +257,7 @@
                         </a>
                         <div class="xe-comment" data-page-node-id="sZhAJfZnOpPMhmAa9Wctnc">
                             <a href="#" class="xe-user-name overflowClip_1" data-page-node-id="mSkWKWi0QtbA5eSFHN6NFh">
-                                <strong data-page-node-id="VEA3AqARaO5uiDXp7wTwHd">{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag{{ if .TagColor }}{{ else }}{{ if eq .Tag "超导" }} rt-sup{{ else if eq .Tag "光量子" }} rt-photonic{{ else if eq .Tag "离子阱" }} rt-ion{{ else if eq .Tag "中性原子" }} rt-atom{{ else if eq .Tag "量子传感与通信" }} rt-sense{{ else if eq .Tag "量子通讯" }} rt-comm{{ else }} rt-default{{ end }}{{ end }}"{{ if .TagColor }} style="background-color:{{.TagColor}}1a;color:{{.TagColor}};border:1px solid {{.TagColor}};"{{ end }} data-page-node-id="2ZwYnzZziGuHg7TXHtjCBO">{{ .Tag }}</span>{{ end }}
+                                <strong data-page-node-id="VEA3AqARaO5uiDXp7wTwHd">{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag{{ if .TagColor }}{{ else }}{{ if eq .Tag "超导" }} rt-sup{{ else if eq .Tag "光量子" }} rt-photonic{{ else if eq .Tag "离子阱" }} rt-ion{{ else if eq .Tag "中性原子" }} rt-atom{{ else if eq .Tag "量子传感与通信" }} rt-sense{{ else if eq .Tag "量子通讯" }} rt-comm{{ else if eq .Tag "量子计算硬件" }} rt-hardware{{ else if eq .Tag "量子软件与云服务" }} rt-software{{ else if eq .Tag "量子通信与网络安全" }} rt-security{{ else if eq .Tag "量子传感" }} rt-sensor{{ else }} rt-default{{ end }}{{ end }}"{{ if .TagColor }} style="background-color:{{.TagColor}}1a;color:{{.TagColor}};border:1px solid {{.TagColor}};"{{ end }} data-page-node-id="2ZwYnzZziGuHg7TXHtjCBO">{{ .Tag }}</span>{{ end }}
                             </a>
                             <p class="overflowClip_2" data-page-node-id="6hb03murPQ6heeEoKj4Nhj">{{ .Description }}</p>
                         </div>

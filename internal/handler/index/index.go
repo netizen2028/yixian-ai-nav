@@ -7,6 +7,7 @@ package index
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 
@@ -14,7 +15,15 @@ import (
 )
 
 func (h *Handler) Index(ctx *gin.Context) {
-	resp, err := h.indexService.Index(ctx)
+	// ?category=N 用于 SEO（标题 / canonical / JSON-LD）与前端锚点定位
+	categoryID := 0
+	if raw := ctx.Query("category"); raw != "" {
+		if n, err := strconv.Atoi(raw); err == nil && n > 0 {
+			categoryID = n
+		}
+	}
+
+	resp, err := h.indexService.Index(ctx, categoryID)
 	if err != nil {
 		v1.HandleError(ctx, http.StatusInternalServerError, err, nil)
 		return
