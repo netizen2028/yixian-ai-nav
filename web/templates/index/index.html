@@ -253,7 +253,7 @@
                         </a>
                         <div class="xe-comment" data-page-node-id="sZhAJfZnOpPMhmAa9Wctnc">
                             <a href="#" class="xe-user-name overflowClip_1" data-page-node-id="mSkWKWi0QtbA5eSFHN6NFh">
-                                <strong data-page-node-id="VEA3AqARaO5uiDXp7wTwHd">{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag {{ if eq .Tag "超导" }}rt-sup{{ else if eq .Tag "光量子" }}rt-photonic{{ else if eq .Tag "离子阱" }}rt-ion{{ else if eq .Tag "中性原子" }}rt-atom{{ else if eq .Tag "量子传感与通信" }}rt-sense{{ else if eq .Tag "量子通讯" }}rt-comm{{ else }}rt-default{{ end }}" data-page-node-id="2ZwYnzZziGuHg7TXHtjCBO">{{ .Tag }}</span>{{ end }}
+                                <strong data-page-node-id="VEA3AqARaO5uiDXp7wTwHd">{{ .Title }}</strong>{{ if .Tag }}<span class="yixian-route-tag{{ if .TagColor }}{{ else }}{{ if eq .Tag "超导" }} rt-sup{{ else if eq .Tag "光量子" }} rt-photonic{{ else if eq .Tag "离子阱" }} rt-ion{{ else if eq .Tag "中性原子" }} rt-atom{{ else if eq .Tag "量子传感与通信" }} rt-sense{{ else if eq .Tag "量子通讯" }} rt-comm{{ else }} rt-default{{ end }}{{ end }}"{{ if .TagColor }} style="background-color:{{.TagColor}}1a;color:{{.TagColor}};border:1px solid {{.TagColor}};"{{ end }} data-page-node-id="2ZwYnzZziGuHg7TXHtjCBO">{{ .Tag }}</span>{{ end }}
                             </a>
                             <p class="overflowClip_2" data-page-node-id="6hb03murPQ6heeEoKj4Nhj">{{ .Description }}</p>
                         </div>

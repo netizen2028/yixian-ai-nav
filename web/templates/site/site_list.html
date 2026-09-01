@@ -189,7 +189,7 @@
                             const tr = trHtml +
                                 '<td>' + value.id + '</td>' +
                                 '<td><img class="lozad img-circle" width="30" src="data:image/png;base64,' + value.icon + '" data-loaded="true"></td>' +
-                                '<td class="truncate-text"><span title="' + value.title + '">' + value.title + '</span></td>' +
+                                '<td class="truncate-text"><span title="' + value.title + '">' + value.title + '</span>' + (value.tag ? ' <span class="label label-info" style="font-size:10px">' + value.tag + '</span>' : '') + '</td>' +
                                 '<td class="truncate-text">' +
                                 '<a href="' + value.url + '" target="_blank" title="' + value.url + '">' + value.url + '</a>' +
                                 '</td>' +
@@ -224,6 +224,8 @@
                                 '                                           data-description="' + value.description + '"' +
                                 '                                           data-category_id="' + value.category_id + '"' +
                                 '                                           data-sort_order="' + value.sort + '"' + <!-- 新增排序数据 -->
+                                '                                           data-tag="' + (value.tag || '') + '"' +
+                                '                                           data-tag-color="' + (value.tag_color || '') + '"' +
                                 '                                           data-toggle="tooltip" data-original-title="编辑">编辑</a>' +
                                 '</div>' +
                                 '</td>' +
@@ -432,6 +434,8 @@
             const description = $(this).attr('data-description');
             const category_id = $(this).attr('data-category_id');
             const sort = $(this).attr('data-sort_order'); // 获取排序数据
+            const tag = $(this).attr('data-tag') || '';
+            const tagColor = $(this).attr('data-tag-color') || '';
 
             $.confirm({
                 title: '编辑网站',
@@ -464,6 +468,25 @@
                     '  <textarea class="form-control" maxlength="225" rows="2" id="description" placeholder="网站描述"  id="title">' + description + '</textarea>' +
                     '</div>' +
                     '<div>' +
+                    '  <label class="control-label">标签文字</label>' +
+                    '  <input autofocus="" type="text" maxlength="20" placeholder="如：超导 / 量子通讯 / 自定义" class="form-control" id="tag" value="' + tag + '">' +
+                    '</div>' +
+                    '<div>' +
+                    '  <label class="control-label">标签颜色</label>' +
+                    '  <div class="d-flex align-items-center">' +
+                    '    <input type="color" id="tag_color" value="' + (tagColor || '#1f6feb') + '" style="width:48px;height:38px;border:none;background:none;cursor:pointer;padding:0;">' +
+                    '    <input type="text" class="form-control ml-2" id="tag_color_hex" value="' + (tagColor || '#1f6feb') + '" maxlength="7" style="max-width:120px;">' +
+                    '    <span class="ml-2 d-flex">' +
+                    '      <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#1f6feb" style="background:#1f6feb;width:22px;height:22px;padding:0"></button>' +
+                    '      <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#7c3aed" style="background:#7c3aed;width:22px;height:22px;padding:0"></button>' +
+                    '      <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#0d9488" style="background:#0d9488;width:22px;height:22px;padding:0"></button>' +
+                    '      <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#c2620a" style="background:#c2620a;width:22px;height:22px;padding:0"></button>' +
+                    '      <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#1a9e54" style="background:#1a9e54;width:22px;height:22px;padding:0"></button>' +
+                    '      <button type="button" class="btn btn-sm btn-light tag-sw" data-c="#1a73e8" style="background:#1a73e8;width:22px;height:22px;padding:0"></button>' +
+                    '    </span>' +
+                    '  </div>' +
+                    '</div>' +
+                    '<div>' +
                     '  <label>排序</label>' +
                     '  <small class="help-block">(相同分类下网站排序)</small>' +
                     '  <input autofocus="" type="number"  placeholder="请输入排序值" class="form-control"  id="sort_order" value="' + sort + '">' + <!-- 新增排序输入框 -->
@@ -481,6 +504,10 @@
                         removeLabel: '删除', // 自定义删除按钮标签
                         showUpload: false // 隐藏上传按钮
                     });
+                    // 标签颜色：取色器与十六进制输入框双向同步 + 预设色块
+                    $('#tag_color').off('input').on('input', function () { $('#tag_color_hex').val(this.value); });
+                    $('#tag_color_hex').off('input').on('input', function () { var v = $(this).val().trim(); if (/^#[0-9a-fA-F]{6}$/.test(v)) { $('#tag_color').val(v); } });
+                    $('.tag-sw').off('click').on('click', function () { var c = $(this).attr('data-c'); $('#tag_color').val(c); $('#tag_color_hex').val(c); });
                     AjaxFormNoAsync(
                         "GET",
                         "/api/admin/category",
@@ -543,6 +570,8 @@
                             formData.append('file', $("#file")[0].files[0]);
                             formData.append('category_id', $("#category_id").val());
                             formData.append('sort', $("#sort_order").val()); // 添加排序值
+                            formData.append('tag', $("#tag").val());
+                            formData.append('tag_color', $("#tag_color_hex").val());
 
                             AjaxMultipartForm(
                                 "PUT",

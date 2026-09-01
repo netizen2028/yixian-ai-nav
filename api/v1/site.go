@@ -19,6 +19,8 @@ type Site struct {
 	Category    string `json:"category"`         // 分类
 	CategoryId  int    `json:"category_id"`      // 分类id
 	Description string `json:"description"`      // 描述
+	Tag         string `json:"tag"`              // 自定义标签文字（如：超导 / 量子通讯 / 自定义）
+	TagColor    string `json:"tag_color"`        // 自定义标签颜色（十六进制，如 #1f6feb；为空则用路线默认配色）
 	IsUsed      bool   `json:"is_used"`          // 是否启用
 	Sort        int    `json:"sort" form:"sort"` // 排序
 	CreatedAt   string `json:"created_at"`       // 创建时间
@@ -61,6 +63,8 @@ type (
 		Url        string `form:"url"`         // 网址地址
 		IsUsed     bool   `form:"is_used"`     // 是否启用
 		FailSwitch bool   `form:"fail_switch"` // 失败开关
+		Tag        string `form:"tag"`         // 自定义标签文字
+		TagColor   string `form:"tag_color"`   // 自定义标签颜色
 	}
 
 	SiteCreateResp struct {
@@ -78,6 +82,8 @@ type (
 		Url         string                `json:"url" form:"url"`                 // 链接
 		CategoryId  int                   `json:"category_id" form:"category_id"` // 分类id
 		Description string                `json:"description" form:"description"` // 描述
+		Tag         *string               `json:"tag" form:"tag"`                 // 自定义标签文字（指针：nil=不改，空串=清空）
+		TagColor    *string               `json:"tag_color" form:"tag_color"`     // 自定义标签颜色（指针：nil=不改，空串=清空）
 		IsUsed      *bool                 `json:"is_used" form:"is_used"`         // 是否启用
 		File        *multipart.FileHeader `json:"file" form:"file"`               // 上传 logo 图片
 		Sort        int                   `json:"sort" form:"sort"`               // 排序

@@ -46,6 +46,8 @@ func (s *service) List(ctx context.Context, req *v1.SiteListReq) (resp *v1.SiteL
 			Category:    siteCategory.StCategory.Title,
 			CategoryId:  siteCategory.StSite.CategoryID,
 			Description: siteCategory.StSite.Description,
+			Tag:         siteCategory.StSite.Tag,
+			TagColor:    siteCategory.StSite.TagColor,
 			IsUsed:      siteCategory.StSite.IsUsed,
 			Sort:        siteCategory.StSite.Sort,
 			CreatedAt:   siteCategory.StSite.CreatedAt.Format(time.DateTime),

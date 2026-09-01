@@ -32,6 +32,8 @@ func newStSite(db *gorm.DB, opts ...gen.DOOption) stSite {
 	_stSite.Title = field.NewString(tableName, "title")
 	_stSite.Icon = field.NewString(tableName, "icon")
 	_stSite.Description = field.NewString(tableName, "description")
+	_stSite.Tag = field.NewString(tableName, "tag")
+	_stSite.TagColor = field.NewString(tableName, "tag_color")
 	_stSite.URL = field.NewString(tableName, "url")
 	_stSite.IsUsed = field.NewBool(tableName, "is_used")
 	_stSite.CreatedAt = field.NewTime(tableName, "created_at")
@@ -53,6 +55,8 @@ type stSite struct {
 	Title       field.String
 	Icon        field.String
 	Description field.String
+	Tag         field.String
+	TagColor    field.String
 	URL         field.String
 	IsUsed      field.Bool
 	CreatedAt   field.Time
@@ -80,6 +84,8 @@ func (s *stSite) updateTableName(table string) *stSite {
 	s.Title = field.NewString(table, "title")
 	s.Icon = field.NewString(table, "icon")
 	s.Description = field.NewString(table, "description")
+	s.Tag = field.NewString(table, "tag")
+	s.TagColor = field.NewString(table, "tag_color")
 	s.URL = field.NewString(table, "url")
 	s.IsUsed = field.NewBool(table, "is_used")
 	s.CreatedAt = field.NewTime(table, "created_at")
@@ -110,12 +116,14 @@ func (s *stSite) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (s *stSite) fillFieldMap() {
-	s.fieldMap = make(map[string]field.Expr, 11)
+	s.fieldMap = make(map[string]field.Expr, 13)
 	s.fieldMap["id"] = s.ID
 	s.fieldMap["category_id"] = s.CategoryID
 	s.fieldMap["title"] = s.Title
 	s.fieldMap["icon"] = s.Icon
 	s.fieldMap["description"] = s.Description
+	s.fieldMap["tag"] = s.Tag
+	s.fieldMap["tag_color"] = s.TagColor
 	s.fieldMap["url"] = s.URL
 	s.fieldMap["is_used"] = s.IsUsed
 	s.fieldMap["created_at"] = s.CreatedAt

@@ -65,6 +65,14 @@ func (s *service) Update(ctx *gin.Context, req *v1.SiteUpdateReq) (resp *v1.Site
 		column := gormx.ColumnName(query.StSite.Sort)
 		update[column] = req.Sort
 	}
+	if req.Tag != nil {
+		column := gormx.ColumnName(query.StSite.Tag)
+		update[column] = *req.Tag
+	}
+	if req.TagColor != nil {
+		column := gormx.ColumnName(query.StSite.TagColor)
+		update[column] = *req.TagColor
+	}
 
 	_, err = s.siteRepository.WithContext(ctx).Update(update, s.siteRepository.WhereByID(req.Id))
 	if err != nil {

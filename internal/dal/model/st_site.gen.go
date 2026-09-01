@@ -18,6 +18,7 @@ type StSite struct {
 	Icon        string     `gorm:"column:icon;type:text" json:"icon"`
 	Description string     `gorm:"column:description;type:varchar(500)" json:"description"`
 	Tag         string     `gorm:"column:tag;type:varchar(50)" json:"tag"`
+	TagColor    string     `gorm:"column:tag_color;type:varchar(50)" json:"tag_color"`
 	URL         string     `gorm:"column:url;type:varchar(255);not null" json:"url"`
 	IsUsed      bool       `gorm:"column:is_used;type:bool;default:false" json:"is_used"`
 	CreatedAt   *time.Time `gorm:"column:created_at;type:datetime;not null;default:CURRENT_TIMESTAMP not null" json:"created_at"`

@@ -67,6 +67,8 @@ func (s *service) BatchCreate(ctx context.Context, req *v1.SiteCreateReq) (*v1.S
 				Title:       condition.Ternary(title != "", title, u),
 				Icon:        icon,
 				Description: desc,
+				Tag:         req.Tag,
+				TagColor:    req.TagColor,
 				URL:         u,
 				CategoryID:  req.CategoryID,
 				IsUsed:      req.IsUsed,

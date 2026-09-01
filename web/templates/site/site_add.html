@@ -57,6 +57,28 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label>标签文字（可选）</label>
+                            <small class="help-block">(首页卡片上显示的路线/自定义标签，如：超导、量子通讯、自研大模型)</small>
+                            <input type="text" class="form-control" id="tag" maxlength="20" placeholder="留空则不显示标签"/>
+                        </div>
+                        <div class="form-group">
+                            <label>标签颜色（可选）</label>
+                            <small class="help-block">(留空则用系统默认路线配色；选色后按自定义颜色显示)</small>
+                            <div class="d-flex align-items-center">
+                                <input type="color" id="tag_color" value="#1f6feb" style="width:48px;height:38px;border:none;background:none;cursor:pointer;padding:0;"/>
+                                <input type="text" class="form-control ml-2" id="tag_color_hex" value="#1f6feb" maxlength="7" style="max-width:120px;"/>
+                                <span class="ml-2 d-flex">
+                                    <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#1f6feb" style="background:#1f6feb;width:22px;height:22px;padding:0"></button>
+                                    <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#7c3aed" style="background:#7c3aed;width:22px;height:22px;padding:0"></button>
+                                    <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#0d9488" style="background:#0d9488;width:22px;height:22px;padding:0"></button>
+                                    <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#c2620a" style="background:#c2620a;width:22px;height:22px;padding:0"></button>
+                                    <button type="button" class="btn btn-sm btn-light m-r-1 tag-sw" data-c="#1a9e54" style="background:#1a9e54;width:22px;height:22px;padding:0"></button>
+                                    <button type="button" class="btn btn-sm btn-light tag-sw" data-c="#1a73e8" style="background:#1a73e8;width:22px;height:22px;padding:0"></button>
+                                </span>
+                            </div>
+                        </div>
+
                         <button type="button" id="btnOk" class="btn btn-primary">确认</button>
                         <button type="button" id="btnLoading" class="btn btn-primary" disabled style="display: none">
                             <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -105,6 +127,18 @@
             limitReachedClass: "badge badge-warning"
         });
 
+        // 标签颜色：取色器与十六进制输入框双向同步 + 预设色块
+        $('#tag_color').on('input', function () { $('#tag_color_hex').val(this.value); });
+        $('#tag_color_hex').on('input', function () {
+            const v = this.value.trim();
+            if (/^#[0-9a-fA-F]{6}$/.test(v)) { $('#tag_color').val(v); }
+        });
+        $('.tag-sw').on('click', function () {
+            const c = $(this).attr('data-c');
+            $('#tag_color').val(c);
+            $('#tag_color_hex').val(c);
+        });
+
         $('#btnOk').on('click', function () {
             const url = $("#url").val();
             if (url === "") {
@@ -132,6 +166,8 @@
                 url: url,
                 is_used: selectedValue === "1",
                 fail_switch: failSwitch,
+                tag: $("#tag").val(),
+                tag_color: $("#tag_color_hex").val(),
             };
 
             AjaxForm(
