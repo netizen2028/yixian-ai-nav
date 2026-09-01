@@ -32,8 +32,8 @@ func (s *service) Update(ctx *gin.Context, req *v1.SiteUpdateReq) (resp *v1.Site
 		update[column] = req.Title
 	}
 	if req.Icon != "" {
-		base64Str, err := tools.ResizeURLImgToBase64(req.Icon, FaviconWidth, FaviconHeight)
-		if err != nil {
+		base64Str, err := tools.IconInputToBase64(req.Icon, FaviconWidth, FaviconHeight)
+		if err != nil || base64Str == "" {
 			base64Str = repository.DefaultFaviconBase64
 		}
 
