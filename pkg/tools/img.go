@@ -76,22 +76,18 @@ func ResizeURLImgToBase64(url string, width, height int) (base64Str string, err 
 	return resizeImg2Base64(resp.Body, width, height)
 }
 
-// resizeBytes2Base64 将原始图片字节缩放为指定尺寸并返回完整 data-URI (PNG)。
-func resizeBytes2Base64(raw []byte, width, height int) (string, error) {
-	b64, err := resizeImg2Base64(bytes.NewReader(raw), width, height)
-	if err != nil {
-		return "", err
-	}
-	return "data:image/png;base64," + b64, nil
-}
-
-// IconInputToBase64 将后台传入的图标输入统一规范为完整 data:image/png;base64, 形式。
-// 支持三种输入：
-//  1. http(s):// 开头的图片 URL —— 下载后转 base64
-//  2. data:image/... 开头的完整 data-URI —— 提取 base64 部分缩放
-//  3. 裸 base64（PNG 以 iVBORw0KG 开头 / JPEG 以 /9j/ 开头）—— 自动补 data: 前缀后缩放
+// IconInputToBase64 将后台传入的图标输入统一规范为**纯 base64**（不含 data: 前缀）。
 //
-// 无法识别或处理失败时返回空字符串，由调用方决定回退默认图标。
+// 重要：前端模板在渲染图标时会自行拼接 "data:image/png;base64," 前缀
+// （见 web/templates/index/index.html 中 data-src="data:image/png;base64,{{ .Icon }}"）。
+// 因此此处必须只返回裸 base64，否则会出现「双重前缀」导致 data-URI 非法、图标全部损坏。
+//
+// 支持三种输入：
+//  1. http(s):// 开头的图片 URL —— 下载后转纯 base64
+//  2. data:image/... 开头的完整 data-URI —— 提取 base64 部分缩放
+//  3. 裸 base64（PNG 以 iVBORw0KG 开头 / JPEG 以 /9j/ 开头）—— 直接缩放
+//
+// 无法识别或处理失败时返回空字符串，由调用方回退默认图标（repository.DefaultFaviconBase64，纯 base64）。
 // 其它格式（如 linecons 类名）原样返回，保持兼容。
 func IconInputToBase64(input string, width, height int) (string, error) {
 	s := strings.TrimSpace(input)
@@ -99,7 +95,7 @@ func IconInputToBase64(input string, width, height int) (string, error) {
 		return "", nil
 	}
 
-	// 1) 已是完整 data-URI
+	// 1) 已是完整 data-URI：提取裸 base64 部分（丢弃 data: 前缀，避免双重前缀）
 	if strings.HasPrefix(s, "data:") {
 		idx := strings.Index(s, ",")
 		if idx < 0 {
@@ -109,21 +105,21 @@ func IconInputToBase64(input string, width, height int) (string, error) {
 		if err != nil {
 			return "", err
 		}
-		return resizeBytes2Base64(raw, width, height)
+		return resizeImg2Base64(bytes.NewReader(raw), width, height)
 	}
 
-	// 2) http(s) URL -> 下载
+	// 2) http(s) URL -> 下载后转纯 base64
 	if strings.HasPrefix(s, "http://") || strings.HasPrefix(s, "https://") {
 		return ResizeURLImgToBase64(s, width, height)
 	}
 
-	// 3) 裸 base64：PNG / JPEG 自动补前缀
+	// 3) 裸 base64：PNG / JPEG 直接缩放（保持纯 base64 输出）
 	if strings.HasPrefix(s, "iVBORw0KG") || strings.HasPrefix(s, "/9j/") {
 		raw, err := base64.StdEncoding.DecodeString(s)
 		if err != nil {
 			return "", err
 		}
-		return resizeBytes2Base64(raw, width, height)
+		return resizeImg2Base64(bytes.NewReader(raw), width, height)
 	}
 
 	// 4) 其它（linecons 类名等）保持原样
